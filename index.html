@@ -1,17 +1,81 @@
 <!DOCTYPE html>
 <html>
-	<head>
-<!-- 	META VIEWPORT -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- CSS LINK -->
-		<link rel="stylesheet" href="css/animate.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		
-	</head>
-<!-- BODY  -->
-	<body>
+<meta charset = "UTF-8">
+<head>
+  <title>SFPD API</title>
 
-	</body>
-<!-- 	BODY END -->
+
+</head>
+<body>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcxCTneoolsMGhrbXjxf14jg9ozDrP-QQ&callback=initMap"
+    type="text/javascript"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+<script type="text/javascript">
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 37.7599, lng: -122.4148},
+    zoom: 15,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+}
+</script>
+
+<header>
+  <h1>Crime in SF's Mission District</h1>
+</header>
+<br>
+<div id="controls" class="row">
+
+<!-- The values of these choices MUST BE: 
+VANDALISM
+ROBBERY
+DRUG/NARCOTIC
+VEHICLE THEFT
+ASSAULT
+
+These are the values allowed in our query string, anything else will likely return a 400 error, created radio buttons 
+ -->
+<div class="btn-group" input type="reset" data-toggle="buttons">
+  <label class="btn btn-primary">
+    <input type="radio"  name="options" value="VANDALISM" autocomplete="off" checked>Vandalism
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio"  name="options" value="ROBBERY" autocomplete="off">Robbery
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio"  name="options" value="DRUG/NARCOTIC" autocomplete="off">Narcotics
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio"  name="options" value="VEHICLE THEFT" autocomplete="off">Vehicle Theft
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio"  name="options" value="ASSAULT" autocomplete="off">Assault
+  </label>
+</div>
+
+
+
+    
+  </div>
+
+
+<!-- Here's our button which will fire off our request -->
+<button class="btn btn-primary" onclick="getData()">Find Crime</button>
+
+<!-- This is where our map will be rendered
+feel free to change the styling on this puppy 
+and preferably remove the inline styling I lazily added -->
+<div style="top: 2%; width: 70%; margin: auto; height: 500px" id="map"></div>
+
+
+<!-- jquery, bootstrap -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="app.js"></script>
+
+</body>
 </html>
